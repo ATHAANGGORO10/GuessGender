@@ -1,0 +1,47 @@
+:root {
+    --Color-default-2: black;
+    --Color-default-1: blueviolet;
+}
+
+*,
+html, 
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 8px 0px;
+    text-align: center;
+    text-transform: lowercase;
+    color: var(--Color-default-1);
+    background-color: var(--Color-default-2);
+}
+
+.from {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    gap: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container label {
+    font-size: 12px;
+}
+
+.container input {
+    border: none;
+    border-bottom: 1px solid var(--Color-default-1);
+    padding: 8px 4px;
+}
