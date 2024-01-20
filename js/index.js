@@ -1,24 +1,37 @@
-const base_api = "https://api.genderize.io";
+const baseApi = "https://api.genderize.io";
+const genderDecode = {
+    male: "Cowok",
+    female: "Cewek",
+};
+
+async function predict(event) {
+    if (event.key !== "Enter") return;
+    const loadingElement = document.getElementById("loading");
+    loadingElement.style.display = "block";
+    const firstName = event.target.value;
+    const queryUrl = `${baseApi}/?name=${firstName}&country_id=ID`;
+    try {
+        const response = await fetch(queryUrl);
+        const result = await response.json();
+        showResult(result.name, result.gender, result.probability);
+        Swal.fire({
+            title: `Hello ${result.name}!`,
+            text: `Jenis kelamin kamu kemungkinan adalah ${genderDecode[result.gender]} sebesar ${result.probability * 100
+                }%`,
+            icon: "info",
+            confirmButtonText: "Cool",
+        });
+    } catch (error) {
+        console.error(error);
+    } finally {
+        loadingElement.style.display = "none";
+    }
+}
 
 function showResult(name, gender, probability) {
     const predictionElement = document.getElementById("prediction");
     const probabilityPercentage = probability * 100;
-    let genderDecode;
-    if (gender == "male") {
-        genderDecode = "Cowok";
-    } else {
-        genderDecode = "Cewek";
-    }
-    const predictionText = `Hello ${name}, Jenis Kelamin Kamu Kemungkinan Adalah ${genderDecode} Sebesar ${probabilityPercentage}%`;
+    const predictionText = `Hello ${name}, jenis kelamin kamu kemungkinan adalah ${genderDecode[gender]
+        } sebesar ${probabilityPercentage}%`;
     predictionElement.textContent = predictionText;
-}
-
-async function predict(event) {
-    if (event.key == "Enter") {
-        const firstName = event.target.value;
-        const queryUrl = `${base_api}/?name=${firstName}&country_id=ID`;
-        const respone = await fetch(queryUrl);
-        const result = await respone.json();
-        showResult (result.name, result.gender, result.probability);
-    }
 }

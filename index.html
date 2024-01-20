@@ -5,23 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Tebak Gender Fake</title>
 </head>
 
 <body>
-    <h1 class="title">
-        Prediksi Gender Berdasarkan Nama Depan
-    </h1>
-    <main class="from">
+    <h1 class="title"> Prediksi Gender Berdasarkan Nama Depan </h1>
+    <main class="form">
         <div class="container">
-            <label>
-                Masukan Nama Depan Anda:
-            </label>
-            <input placeholder="Contoh : atha anggoro aryaguna" onkeydown="predict(event)">
-            <div id="prediction"></div>
+            <div class="output" id="prediction"></div> <label class="label-brand"> Masukan Nama Depan Anda: </label>
+            <input class="input" placeholder="Contoh : ATHA" onkeydown="predict(event)">
+            <a href="/"><button class="bn632-hover bn20" type="reset">Reset Input User</button></a>
         </div>
     </main>
-
+    <p class="description">
+        Ketika kalian ingin menginput jawaban kalian, kalian bisa menggunakan click "Enter" pada keyboard kalian. Dan
+        untuk button "Reset Input User" kalian bisa click untuk meriset Input jawaban anda.
+    </p>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
     <script src="/js/index.js"></script>
 </body>
 
